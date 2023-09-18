@@ -62,7 +62,6 @@ void vypisDataEpaper() {
   Serial.print(F(" Altitude: "));
   Serial.println(altitude);
 
-
   // možné nastavení otočení displeje,
   // zadává se jako 1, 2, 3 (90, 180, 270 stupňů)
   display.setRotation(1);
@@ -82,7 +81,11 @@ void vypisDataEpaper() {
     // označuje kurzor pozici řádku, levý-dolní pixel písmen
     display.setCursor(50, 50);
     // výpis textu
-    display.print("Weather 0.1");
+
+    for (int i = 0; i < sizeof(sections); i++) {
+      display.print(sections[i].name);
+    }
+
     // nastavení kurzoru
     display.setCursor(20, 100);
     // výpis textu

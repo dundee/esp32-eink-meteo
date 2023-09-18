@@ -1,3 +1,4 @@
+#include "forecast.h"
 #include "ArduinoJson.h"
 #include <HTTPClient.h>
 
@@ -61,6 +62,7 @@ char json[] = "{                     "
     "   ]                                 "
     "}\";                                 ";
 
+
     void parse() {
         startWifi();
 
@@ -82,7 +84,7 @@ char json[] = "{                     "
       if (httpResponseCode>0) {
         Serial.print("HTTP Response code: ");
         Serial.println(httpResponseCode);
-        String payload = http.getString();
+        payload = http.getString();
         Serial.println(payload);
       }
       else {
@@ -101,6 +103,12 @@ char json[] = "{                     "
       if (err != DeserializationError::Ok) {
         logger->log("Parsovani selhalo: %s", err.c_str());
         return;
+      }
+
+      sections = new Section[doc["sections"].size()];
+
+      for (int i = 0; i < doc["sections"].size(); i++) {
+        sections[i].name = doc["sections"][i]["nazev"];
       }
 
       const char* nazev = doc["sections"][0]["nazev"];
