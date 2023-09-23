@@ -109,6 +109,10 @@ char json[] = "{                     "
 
       for (int i = 0; i < doc["sections"].size(); i++) {
         sections[i].name = doc["sections"][i]["nazev"];
+        sections[i].temp_min = doc["sections"][i]["temp_min"];
+        sections[i].temp_max = doc["sections"][i]["temp_max"];
+        sections[i].rain = doc["sections"][i]["rain_sum"];
+        sections[i].icon = doc["sections"][i]["icon"];
       }
 
       const char* nazev = doc["sections"][0]["nazev"];

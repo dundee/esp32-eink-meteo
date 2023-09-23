@@ -16,6 +16,10 @@
 */
 struct Section {
     const char* name;
+    float temp_min;
+    float temp_max;
+    float rain;
+    const char* icon;
 };
 
 Section *sections;
