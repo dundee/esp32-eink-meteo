@@ -117,6 +117,11 @@ void setup() {
   vypisDataEpaper();
   // přepnutí displeje do stavu hibernace
   display.hibernate();
+
+  long DEEP_SLEEP_TIME_SEC = 3600;
+  esp_sleep_enable_timer_wakeup(1000000L * DEEP_SLEEP_TIME_SEC);
+  Serial.println("Starting deep-sleep period...");
+  esp_deep_sleep_start();
 }
 
 void loop() {
